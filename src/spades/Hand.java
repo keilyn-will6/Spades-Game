@@ -41,24 +41,24 @@ public class Hand {
     }
 
     public void displayHand() {
-        
-        for (int i = 0; i < hand.size(); i++) { 
+
+        for (int i = 0; i < hand.size(); i++) {
             if ("Diamonds".equals(hand.get(i).getSuit())) {
                 Card card1 = hand.get(i);
                 for (int j = i + 1; j < hand.size(); j++) {
                     if ("Diamonds".equals(hand.get(j).getSuit())) {
 
                         Card card2 = hand.get(j);
-                        
-                            if (card2.getFaceValue() < card1.getFaceValue()) {
-                                //Card tempCar2 = card2;
-                                //Card tempCar1 = card1;
-                                hand.remove(card2);
-                                hand.add(j, card1);
-                                hand.remove(card1);
-                                hand.add(i, card2);
-                                card1 = card2;
-                            }
+
+                        if (card2.getFaceValue() < card1.getFaceValue()) {
+                            //Card tempCar2 = card2;
+                            //Card tempCar1 = card1;
+                            hand.remove(card2);
+                            hand.add(j, card1);
+                            hand.remove(card1);
+                            hand.add(i, card2);
+                            card1 = card2;
+                        }
                     }
                 }
                 System.out.println(card1);
@@ -72,6 +72,11 @@ public class Hand {
                     if ("Clubs".equals(hand.get(j).getSuit())) {
                         Card card2 = hand.get(j);
                         if (card2.getFaceValue() < card1.getFaceValue()) {
+                            hand.remove(card2);
+                            hand.add(j, card1);
+                            hand.remove(card1);
+                            hand.add(i, card2);
+                            card1 = card2;
                             card1 = card2;
                         }
                     }
@@ -87,6 +92,11 @@ public class Hand {
                     if ("Hearts".equals(hand.get(j).getSuit())) {
                         Card card2 = hand.get(j);
                         if (card2.getFaceValue() < card1.getFaceValue()) {
+                            hand.remove(card2);
+                            hand.add(j, card1);
+                            hand.remove(card1);
+                            hand.add(i, card2);
+                            card1 = card2;
                             card1 = card2;
                         }
                     }
@@ -102,6 +112,11 @@ public class Hand {
                     if ("Spades".equals(hand.get(j).getSuit())) {
                         Card card2 = hand.get(j);
                         if (card2.getFaceValue() < card1.getFaceValue()) {
+                            hand.remove(card2);
+                            hand.add(j, card1);
+                            hand.remove(card1);
+                            hand.add(i, card2);
+                            card1 = card2;
                             card1 = card2;
                         }
                     }
@@ -111,7 +126,5 @@ public class Hand {
         }
 
     }
-
-    
 
 }
