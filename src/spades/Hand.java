@@ -35,12 +35,17 @@ public class Hand {
     public void removeCard(int i) {
         hand.remove(i);
     }
+    
+    public Card removeCard2(int i){
+        return hand.remove(i);
+    }
 
     public Card getCard(int i) {
         return hand.get(i);
     }
 
     public void displayHand() {
+        int k = 1;
 
         for (int i = 0; i < hand.size(); i++) {
             if ("Diamonds".equals(hand.get(i).getSuit())) {
@@ -61,7 +66,7 @@ public class Hand {
                         }
                     }
                 }
-                System.out.println(card1);
+                System.out.println(k++ + " "+card1);
             }
         }
 
@@ -81,7 +86,7 @@ public class Hand {
                         }
                     }
                 }
-                System.out.println(card1);
+                System.out.println(k++ + ". "+card1);
             }
         }
 
@@ -101,7 +106,7 @@ public class Hand {
                         }
                     }
                 }
-                System.out.println(card1);
+                System.out.println(k++ + ". "+card1);
             }
         }
 
@@ -121,10 +126,12 @@ public class Hand {
                         }
                     }
                 }
-                System.out.println(card1);
+                System.out.println(k++ + ". "+card1);
             }
         }
+        
+        System.out.println("\n");
 
-    }
+    } //end of displayHand()
 
-}
+}//end of class 

@@ -25,11 +25,13 @@ public class SpadesStart{
         System.out.println("\n Shuffled Deck ");
         deckOfCards.newDis();
         //Card aceOfSpade = new Card("Ace","Spades ",14,ImageIO.read(new File ("/Users/keilynmarcuswilliamson/Spades-Game/src/cards/ace_of_spades.png")));
-        Hand player1 = new Hand();
+        Player player1 = new Player("Keilyn",1,3);
         //player1.addcard(aceOfSpade);
         
         deckOfCards.deal(player1);
         System.out.println("\n Player Hand ");
+        player1.displayHand();
+        player1.removeCard(0);
         player1.displayHand();
         
         //System.out.println(deckOfCards.deal());
