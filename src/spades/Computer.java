@@ -7,27 +7,27 @@ package spades;
 
 /**
  *
- * @author carlosespejo
+ * @author keilynmarcuswilliamson
  */
-public class Player extends Hand{
-
+public class Computer extends Hand {
     private String name;
     private int team;
     private int dealNum;
     private int booksWon;
+    private String difficulty;
     private Hand hand = new Hand();
-
-    public Player(String name, int team, int dealNum) {
+    
+    public Computer (String name, int team, int dealNum, String difficulty){
         this.name = name;
         this.team = team;
         this.dealNum = dealNum;
+        this.difficulty = difficulty;
+    }
+    
+    public void play(){
         
     }
-
-    public Card play(int playCard) {
-
-        return hand.removeCard2(playCard);
-
-    }
-
+    
+    
+    
 }
