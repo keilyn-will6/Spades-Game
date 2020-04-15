@@ -9,14 +9,31 @@ package spades;
  *
  * @author carlosespejo
  */
-public class Player {
-    private String Name;
-    boolean isHuman = false;
+public class Player extends Hand{
 
-public Player(String name){
-    this.Name = name;
-}
+    private String name;
+    private int team;
+    private int seatNum;
+    private int booksWon;
+    private Hand hand = new Hand();
 
+    public Player(String name, int team, int seatNum) {
+        this.name = name;
+        this.team = team;
+        this.seatNum = seatNum;
+        
+    }
 
+    public Card play(int playCard) {
+
+        return hand.removeCard2(playCard);
+
+    }
     
+    public void getName(){
+        System.out.println(name);
+    }
+    
+    
+
 }
