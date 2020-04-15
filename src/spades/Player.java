@@ -13,14 +13,14 @@ public class Player extends Hand{
 
     private String name;
     private int team;
-    private int dealNum;
+    private int seatNum;
     private int booksWon;
     private Hand hand = new Hand();
 
-    public Player(String name, int team, int dealNum) {
+    public Player(String name, int team, int seatNum) {
         this.name = name;
         this.team = team;
-        this.dealNum = dealNum;
+        this.seatNum = seatNum;
         
     }
 
@@ -29,5 +29,11 @@ public class Player extends Hand{
         return hand.removeCard2(playCard);
 
     }
+    
+    public void getName(){
+        System.out.println(name);
+    }
+    
+    
 
 }

@@ -12,23 +12,23 @@ package spades;
 public class Computer extends Hand {
     private String name;
     private int team;
-    private int dealNum;
+    private int seatNum;
     private int booksWon;
-    private String difficulty;
+    //private String difficulty;
     private Hand hand = new Hand();
     
     
     
-    public Computer (String name, int team, int dealNum, String difficulty){
+    public Computer (String name, int team, int seatNum){
         this.name = name;
         this.team = team;
-        this.dealNum = dealNum;
-        this.difficulty = difficulty;
+        this.seatNum = seatNum;
+        //this.difficulty = difficulty;
     }
     
     //add bid method
     
-    public void play(){
+    public void play(int turn){
         
         
         //going first 
@@ -121,6 +121,10 @@ public class Computer extends Hand {
         // this method will allow the computer to check if they have high cards in a
         //specific suit then put them into an array then choose which one to pick
         //this method is used for beating the opponets highest card of a specific suit
+    }
+    
+    public void getName(){
+        System.out.println(name);
     }
     
     

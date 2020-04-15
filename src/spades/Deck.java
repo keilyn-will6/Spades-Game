@@ -42,12 +42,12 @@ public class Deck {
                             suits[suit], // number on the card
                             faceNum + 2, // value of the card
                             tempCardImage); // image of the card
-                    
-                     Card myCard = new Card(faces[faceNum],
+
+                    Card myCard = new Card(faces[faceNum],
                             suits[suit], // number on the card
                             faceNum + 2, // value of the card
                             tempCardImage);
-                     
+
                     newDeck.add(myCard);
                 }
 
@@ -62,9 +62,9 @@ public class Deck {
             System.out.println(card);
         }
     }
-    
-    public void newDis(){
-        for (Card card : newDeck){
+
+    public void newDis() {
+        for (Card card : newDeck) {
             System.out.println(card);
         }
     }
@@ -82,11 +82,10 @@ public class Deck {
             deck[randomPlace] = tempPlace;
 
         }
-        
-        
+
     }
-    
-    public void newShuff(){
+
+    public void newShuff() {
         Collections.shuffle(newDeck);
         /*
         SecureRandom secureRandom = new SecureRandom();
@@ -101,19 +100,13 @@ public class Deck {
 
         
        }
-*/
+         */
     }
-    
-    public void deal(Hand hand2){
-        for (int i = 0; i < 13; i++) {
-            hand2.addcard(newDeck.remove(newDeck.size()-1));
-        }
-        
-        
 
-}
+    public void deal(Hand hand2) {
 
-    
-    
-    
+        hand2.addcard(newDeck.remove(newDeck.size() - 1));
+
+    }
+
 }

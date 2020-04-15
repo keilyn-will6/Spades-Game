@@ -20,6 +20,11 @@ public class SpadesStart{
         //startGame.setVisible(true); 
         
         //offset by -1
+        
+        Game game = new Game();
+        game.play();
+        
+        /*
         ArrayList <Integer> seats = new ArrayList<>(); // indicates the team numbers
         seats.add(1);
         seats.add(2);
@@ -90,6 +95,7 @@ public class SpadesStart{
         
         //Card aceOfSpade = new Card("Ace","Spades ",14,ImageIO.read(new File ("/Users/keilynmarcuswilliamson/Spades-Game/src/cards/ace_of_spades.png")));
         //System.out.print(aceOfSpade);
+*/
 
     }
     
@@ -112,26 +118,7 @@ public class SpadesStart{
 
         return list.remove(ran);
         
-        
-        
-        /*
-        int num;
-        if(array[0] == null){
-            array[0] = obj;
-            num = 0;
-            }else if (array[1] == null){
-                array[1] = obj;
-                num = 1;
-            }else if (array[2] == null){
-                array[2] = obj;
-                num = 2;
-            }else{
-                array[3] = obj;
-                num = 3;
-            }
-            
-            return num;
-*/
+      
         }
     
     //PlayGUI test = new PlayGUI();
