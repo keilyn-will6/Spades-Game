@@ -19,6 +19,7 @@ public class SpadesStart{
         //StartGUI startGame = new StartGUI();
         //startGame.setVisible(true); 
         
+        //offset by -1
         ArrayList <Integer> seats = new ArrayList<>(); // indicates the team numbers
         seats.add(1);
         seats.add(2);
