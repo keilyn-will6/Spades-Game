@@ -12,15 +12,15 @@ package spades;
 public class Player extends Hand{
 
     private String name;
-    private int team;
-    private int seatNum;
+    //private int team;
+    //private int seatNum;
     private int booksWon;
     private Hand hand = new Hand();
 
-    public Player(String name, int team, int seatNum) {
+    public Player(String name) {
         this.name = name;
-        this.team = team;
-        this.seatNum = seatNum;
+        //this.team = team;
+        //this.seatNum = seatNum;
         
     }
 
@@ -30,8 +30,9 @@ public class Player extends Hand{
 
     }
     
-    public void getName(){
-        System.out.println(name);
+    @Override
+    public String getName(){
+        return name;
     }
     
     

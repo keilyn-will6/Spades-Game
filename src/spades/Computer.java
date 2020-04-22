@@ -11,18 +11,18 @@ package spades;
  */
 public class Computer extends Hand {
     private String name;
-    private int team;
-    private int seatNum;
+    //private int team;
+    //private int seatNum;
     private int booksWon;
     //private String difficulty;
     private Hand hand = new Hand();
     
     
     
-    public Computer (String name, int team, int seatNum){
+    public Computer (String name){
         this.name = name;
-        this.team = team;
-        this.seatNum = seatNum;
+        //this.team = team;
+        //this.seatNum = seatNum;
         //this.difficulty = difficulty;
     }
     
@@ -123,9 +123,11 @@ public class Computer extends Hand {
         //this method is used for beating the opponets highest card of a specific suit
     }
     
-    public void getName(){
-        System.out.println(name);
+    @Override
+    public String getName(){
+        return name;
     }
+    
     
     
     
