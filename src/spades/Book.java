@@ -61,6 +61,7 @@ public class Book {
 
         for (int i = 0; i < bookArray.length; i++) {
             tempCard = bookArray[i];
+            // try and find first spade in book
             if ("Spades".equals(tempCard.getSuit())) {
                 iterationNum = i;
                 returnValue = i;
@@ -72,9 +73,9 @@ public class Book {
         }
 
         for (int i = iterationNum + 1; i < bookArray.length; i++) {
-            Card tempCard2;
-            tempCard2 = bookArray[i];
-            if ("Spades".equals(tempCard2.getFaceName())) {
+            Card tempCard2 = bookArray[i];
+            
+            if ("Spades".equals(tempCard2.getSuit())) {
                 if (tempCard2.getFaceValue() > tempCard.getFaceValue()) {
                     tempCard = tempCard2;
                     returnValue = i;

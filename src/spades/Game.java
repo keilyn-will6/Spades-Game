@@ -8,7 +8,9 @@ package spades;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.lang.ArrayIndexOutOfBoundsException;
 
 /**
  *
@@ -83,8 +85,6 @@ public class Game {
         //int currentPerson = 0;
         dealer = 0;
         //while ((team1 != scoreLimit || team1 < scoreLimit) || (team2 != scoreLimit || team2 < scoreLimit)) {
-        
-        
 
         if (dealer == 3) {
             //else turn = dealer +1
@@ -92,131 +92,146 @@ public class Game {
         } else {
             turn = dealer + 1;
         }
-        
-        while(true){
 
-        //for (int iter = 0; iter < players[0].numOfCards(); iter++) {
-        Book book = new Book();
-        //keeps track of where players won
-        int[] won = new int[4];
-        for (int i = 0; i < book.length(); i++) {
-            //currentPerson = 0; 
-            //change 6 to something more specific
-            if (players[turn] == player1) {
-                // ask player what card they would like to put down
-                // j is the number of the card the player wants to put down
-                Scanner scanner = new Scanner(System.in);
-                int input;
-                players[turn].displayHand2();
-                System.out.println("Choose a card to put down");
-    
-                input = scanner.nextInt();
-                System.out.println("");
-                Card playCard = player1.getCard(input - 1);
+        while (true) {
 
-                if (i != 0) {// if you are not the first person to put down a card
-                    boolean hasSuit = true;
-                    while (hasSuit == true) {
-                        for (int j = 0; j < player1.numOfCards(); j++) {
-                            if (player1.getCard(j).getSuit().equals(book.getCard(0).getSuit())) {
-                                hasSuit = true;
-                                if (!playCard.getSuit().equals(book.getCard(0).getSuit())) {
-                                    System.out.println("You still have " + book.getCard(0).getSuit() + " in you hand, put it down"+"\n");
-                                    player1.displayHand2();
-                                    input = scanner.nextInt();
-                                    playCard = player1.getCard(input - 1);
-                                    break;
-                                }else{
-                                    hasSuit = false;
+            //for (int iter = 0; iter < players[0].numOfCards(); iter++) {
+            Book book = new Book();
+            //keeps track of where players won
+            int[] won = new int[4];
+            boolean a = true;
+            for (int i = 0; i < book.length(); i++) {
+                //currentPerson = 0; 
+                //change 6 to something more specific
+                if (players[turn] == player1) {
+
+                    while (a == true) {
+
+                        try {
+                            
+
+                            // ask player what card they would like to put down
+                            // j is the number of the card the player wants to put down
+                            Scanner scanner = new Scanner(System.in);
+                            int input;
+                            players[turn].displayHand2();
+                            System.out.println("Choose a card to put down");
+
+                            input = scanner.nextInt();
+                            System.out.println("");
+                            Card playCard = player1.getCard(input - 1);
+                            a = false;
+
+                            if (i != 0) {// if you are not the first person to put down a card
+                                boolean hasSuit = true;
+                                while (hasSuit == true) {
+                                    for (int j = 0; j < player1.numOfCards(); j++) {
+                                        if (player1.getCard(j).getSuit().equals(book.getCard(0).getSuit())) {
+                                            hasSuit = true;
+                                            if (!playCard.getSuit().equals(book.getCard(0).getSuit())) {
+                                                System.out.println("You still have " + book.getCard(0).getSuit() + " in your hand, put it down" + "\n");
+                                                player1.displayHand2();
+                                                input = scanner.nextInt();
+                                                playCard = player1.getCard(input - 1);
+                                                break;
+                                            } else {
+                                                hasSuit = false;
+                                            }
+                                        }
+                                        if (j == player1.numOfCards() - 1) {
+                                            hasSuit = false;
+
+                                        }
+                                    }
+
                                 }
                             }
-                            if (j == player1.numOfCards() - 1) {
-                                hasSuit = false;
 
-                            }
+                            System.out.println("You put down the " + player1.getCard(input - 1) + "\n");
+
+                            book.addCard(i, player1.removeCard2(input - 1));
+                            won[i] = player1.getSeat() - 1;
+                            //won[i] = turn;
+
+                        } catch (InputMismatchException | ArrayIndexOutOfBoundsException | NullPointerException ex) {
+                            System.out.println("This is an invalid entry \n");
+                            a = true;
+
                         }
-
                     }
-                }
-                
-                System.out.println("You put down the " + player1.getCard(input -1)+ "\n");
-
-                book.addCard(i, player1.removeCard2(input - 1));
-                won[i] = player1.getSeat() - 1;
-                //won[i] = turn;
-            } else {
-
+                } 
                 // call the play method for the computer
-                System.out.println(players[turn].getName()+ " put down " + players[turn].getCard(0)+ "\n");
-                book.addCard(i, players[turn].removeCard2(0));
-                won[i] = players[turn].getSeat() - 1;
+                else{
+                        int down = players[turn].play(players[turn], i, book);
+
+                        System.out.println(players[turn].getName() + " put down " + players[turn].getCard(down) + "\n");
+                        book.addCard(i, players[turn].removeCard2(down));
+                        won[i] = players[turn].getSeat() - 1;
+
+                    } 
+
+                if (turn == 3) {
+                    turn = 0;
+                    //break;
+                } else {
+                    turn++;
+                }
             }
 
-            if (turn == 3) {
-                turn = 0;
-                //break;
-            } else {
-                turn++;
+            //testing
+            for (int i = 0; i < book.length(); i++) {
+                System.out.println(i + ". " + book.getCard(i));
             }
-        }
+            System.out.println("");
 
-        //testing
-        for (int i = 0; i < book.length(); i++) {
-            System.out.println(i + ". " + book.getCard(i));
-        }
-        System.out.println("");
-
-        if ("Spades".equals(book.getCard(0).getSuit())) {
-            int var = book.checkHighestCard();
-            int var2 = won[var];
-
-            //for testing
-            System.out.println(players[var2].getName() + " has won the book");
-            
-            
-            
-
-            turn = var2;
-
-        } else {
-            int var = book.checkHighestSpade();
-            //no spades
-            if (var == -1) {
-                int vary = book.checkHighestCard();
-                int var2 = won[vary];
-
-                //for testing
-                System.out.println(players[var2].getName() + " has won the book");
-
-                turn = var2;
-
-            } else {
+            if ("Spades".equals(book.getCard(0).getSuit())) {
+                int var = book.checkHighestCard();
                 int var2 = won[var];
 
                 //for testing
                 System.out.println(players[var2].getName() + " has won the book");
+
                 turn = var2;
+
+            } else {
+                int var = book.checkHighestSpade();
+                //no spades
+                if (var == -1) {
+                    int vary = book.checkHighestCard();
+                    int var2 = won[vary];
+
+                    //for testing
+                    System.out.println(players[var2].getName() + " has won the book");
+
+                    turn = var2;
+
+                } else {
+                    int var2 = won[var];
+
+                    //for testing
+                    System.out.println(players[var2].getName() + " has won the book");
+                    turn = var2;
+
+                }
 
             }
 
-        }
+            //add points to the winning team score
+            if (players[turn].getTeam() == 1) {
+                team1 += 10;
 
-        //add points to the winning team score
-        if (players[turn].getTeam() == 1) {
-            team1 += 10;
+            } else {
+                team2 += 10;
+            }
 
-        } else {
-            team2 += 10;
-        }
+            //}
+            round++;
 
-        //}
-        round++;
-        
-        for (Hand player : players) {
+            for (Hand player : players) {
                 System.out.println(player.getName());
                 player.displayHand2();
             }
-        
+
         }// end of while loop
 
         // }
