@@ -8,7 +8,7 @@ package spades;
 import java.util.Random;
 
 /**
- *
+ *This class creates an instance of a computer player
  * @author keilynmarcuswilliamson
  */
 public class Computer extends Hand {
@@ -20,6 +20,10 @@ public class Computer extends Hand {
     //private String difficulty;
     private Hand hand = new Hand();
 
+    /**
+     * Constructor for the computer class
+     * @param name name of the computer 
+     */
     public Computer(String name) {
         this.name = name;
         //this.team = team;
@@ -27,7 +31,15 @@ public class Computer extends Hand {
         //this.difficulty = difficulty;
     }
 
-    //add bid method
+    /**
+     * This methods allows the computer to choose what card to play
+     * @param hand are the cards associated with the computer object
+     * @param turn the turn that they are putting down a card. This drastically
+     * effects the choice of what card to put down.
+     * @param book the cards already at play if turn != 0 (going first)
+     * @return the index value that of the card that the computer has chosen to 
+     * put down.
+     */
     public int play(Hand hand, int turn, Book book) {
 
         //going first 
@@ -169,7 +181,7 @@ public class Computer extends Hand {
                         // look and see if we have a card higher than opponent's card in the same suit
                         for (int j = i + 1; j < hand.numOfCards(); j++) {
                             Card temp = hand.getCard(j);
-                            
+
                             if (temp.getFaceValue() > opponent.getFaceValue() && temp.getSuit().equals(teammate.getSuit())) {
                                 itNum = j;
                                 return itNum;
@@ -191,16 +203,15 @@ public class Computer extends Hand {
                 return itNum;
 
             }
-            
+
             // if teammate's card does not beat opponents card, check and see if you have a card that 
             //  will beat their card ( higher card in the same suit)
             // if opponent has a card in the same suit as teamate that is not
             // a spade but you have a spade throw it out
-      
             for (int i = 0; i < hand.numOfCards(); i++) {
-                if(teammate.getSuit().equals(opponent.getSuit())){
-                    for (int j = i ; j < hand.numOfCards(); j++) {
-                        if("Spades".equals(hand.getCard(j).getSuit())){
+                if (teammate.getSuit().equals(opponent.getSuit())) {
+                    for (int j = i; j < hand.numOfCards(); j++) {
+                        if ("Spades".equals(hand.getCard(j).getSuit())) {
                             return j;
                         }
                     }
@@ -211,11 +222,11 @@ public class Computer extends Hand {
 
                 }
             }
-            
+
             // if you do not have a card that will beat opponets card throw out
             // smallest card of any suit except spades unless that is all you have
             int itNum = lowestInHand(hand);
-                return itNum;
+            return itNum;
 
             // going third
             // look at suit established by first player
@@ -250,7 +261,6 @@ public class Computer extends Hand {
             // throw 1 out
             // if no
             // throw out lowest card of any suit except spade
-            
             // going fourth 
             // look at suit established by first player
             // check if they have suit
@@ -265,7 +275,6 @@ public class Computer extends Hand {
             // play highest card (win range)
             // if no 
             // play lowest card
-            
             // non renigging rules (Player four)
             // check if teammates card won round already (beat players 1 and 3)
             // if yes
@@ -288,7 +297,7 @@ public class Computer extends Hand {
             // this method will allow the computer to check if they have high cards in a
             //specific suit then put them into an array then choose which one to pick
             //this method is used for beating the opponets highest card of a specific suit
-        }else if(turn == 3){
+        } else if (turn == 3) {
             Card opponent = book.getCard(0);
             Card teammate = book.getCard(1);
             Card opponent2 = book.getCard(2);
@@ -306,7 +315,7 @@ public class Computer extends Hand {
                         // look and see if we have a card higher than opponent's card in the same suit
                         for (int j = i + 1; j < hand.numOfCards(); j++) {
                             Card temp = hand.getCard(j);
-                            
+
                             if ((temp.getFaceValue() > opponent.getFaceValue() && temp.getSuit().equals(teammate.getSuit()))
                                     && (temp.getFaceValue() > opponent2.getFaceValue() && temp.getSuit().equals(teammate.getSuit()))) {
                                 itNum = j;
@@ -318,12 +327,12 @@ public class Computer extends Hand {
                     return itNum;
                 }
             }
-            
+
             // if you dont have a card in that suit check if teammate's card
             // beat opponet2 and opponent1 cards
             if (((teammate.getSuit().equals(opponent.getSuit()) && teammate.getFaceValue() > opponent.getFaceValue())
                     || ("Spades".equals(teammate.getSuit()) && !"Spades".equals(opponent.getSuit())) || (!"Spades".equals(teammate.getSuit())
-                    && !"Spades".equals(opponent.getSuit()) && !opponent.getSuit().equals(teammate.getSuit()))) 
+                    && !"Spades".equals(opponent.getSuit()) && !opponent.getSuit().equals(teammate.getSuit())))
                     && ((teammate.getSuit().equals(opponent2.getSuit()) && teammate.getFaceValue() > opponent2.getFaceValue())
                     || ("Spades".equals(teammate.getSuit()) && !"Spades".equals(opponent2.getSuit())) || (!"Spades".equals(teammate.getSuit())
                     && !"Spades".equals(opponent2.getSuit()) && !opponent2.getSuit().equals(teammate.getSuit())))) {
@@ -334,49 +343,60 @@ public class Computer extends Hand {
                 return itNum;
 
             }
-            
+
             // if teammate's card does not beat both opponents cards, check and see if you have a card that 
             //  will beat their card ( higher card in the same suit)
             // if opponent has a card in the same suit as teamate that is not
             // a spade, but you have a spade throw it out
-      
             for (int i = 0; i < hand.numOfCards(); i++) {
-                if((teammate.getSuit().equals(opponent.getSuit())) && (teammate.getSuit().equals(opponent2.getSuit()))){
-                    for (int j = i ; j < hand.numOfCards(); j++) {
-                        if("Spades".equals(hand.getCard(j).getSuit())){
+                if ((teammate.getSuit().equals(opponent.getSuit())) && (teammate.getSuit().equals(opponent2.getSuit()))) {
+                    for (int j = i; j < hand.numOfCards(); j++) {
+                        if ("Spades".equals(hand.getCard(j).getSuit())) {
                             return j;
                         }
                     }
                 }// at this point the only card that will beat teammates card is a spade
                 else if ((("Spades".equals(hand.getCard(i).getSuit()) && "Spades".equals(opponent.getSuit()))
-                        && (hand.getCard(i).getFaceValue() > opponent.getFaceValue())) ||
-                        (("Spades".equals(hand.getCard(i).getSuit()) && "Spades".equals(opponent2.getSuit()))
+                        && (hand.getCard(i).getFaceValue() > opponent.getFaceValue()))
+                        || (("Spades".equals(hand.getCard(i).getSuit()) && "Spades".equals(opponent2.getSuit()))
                         && (hand.getCard(i).getFaceValue() > opponent2.getFaceValue()))) {
                     return i;
 
+                } else if ("Spades".equals(hand.getCard(i).getSuit())) {
+                    if ((!"Spades".equals(opponent2.getSuit())) || ("Spades".equals(opponent2.getSuit()) && hand.getCard(i).getFaceValue() > opponent2.getFaceValue())) {
+                        return i;
+                    }
                 }
+
             }
-            
+
             // if you do not have a card that will beat opponets card throw out
             // smallest card of any suit except spades unless that is all you have
             int itNum = lowestInHand(hand);
-                return itNum;
-            
-            
-            
-            
+            return itNum;
+
         }
         return 0;
 
     }
+    /**
+     * Get the name of the computer player
+     * @return return the name of the computer
+     */
 
     @Override
     public String getName() {
         return name;
     }
+    
+    /**
+     * Returns the lowest value card in the computer's hand that is not a spade 
+     * @param hand hand of cards associated with the computer object
+     * @return returns the index position of the card with the lowest value
+     */
 
     public int lowestInHand(Hand hand) {
-        
+
         for (int i = 0; i < hand.numOfCards(); i++) {
             Card lowest = hand.getCard(i);
             int itNum = i;

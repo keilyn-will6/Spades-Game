@@ -9,7 +9,7 @@ import java.util.Collections;
 import javax.imageio.ImageIO;
 
 /**
- *
+ *Creates a deck of cards
  * @author keilynmarcuswilliamson
  */
 public class Deck {
@@ -19,6 +19,10 @@ public class Deck {
     private int currentCard;
     //private Hand hand;
 
+    /**
+     * Constructor for a deck of cards 
+     * @throws IOException when a card image cannot be found
+     */
     public Deck() throws IOException {
         String[] faces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
         String[] suits = {"Diamonds", "Clubs", "Hearts", "Spades"};
@@ -57,18 +61,27 @@ public class Deck {
 
     }
 
+    /**
+     * displays the deck of cards using an array
+     */
     public void displayDeck() {
         for (Card card : deck) {
             System.out.println(card);
         }
     }
 
+    /**
+     * Displays the deck of cards using an arrayList
+     */
     public void newDis() {
         for (Card card : newDeck) {
             System.out.println(card);
         }
     }
-
+    
+/**
+ * shuffle method for the array deck of cards
+ */
     public void shuffle() {
         currentCard = 0;
 
@@ -85,6 +98,9 @@ public class Deck {
 
     }
 
+    /**
+     * Shuffle method for the ArrayList deck of cards
+     */
     public void newShuff() {
         Collections.shuffle(newDeck);
         /*
@@ -103,6 +119,10 @@ public class Deck {
          */
     }
 
+    /**
+     * Removes one from the deck and adds it to a hand
+     * @param hand2 the hand to add the card from the deck to.
+     */
     public void deal(Hand hand2) {
 
         hand2.addcard(newDeck.remove(newDeck.size() - 1));

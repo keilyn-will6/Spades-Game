@@ -6,47 +6,81 @@
 package spades;
 
 /**
- *
+ *Creates a book. Book is an array of four cards placed down by every player.
+ * is allows the cards to be compared to see who has won.
  * @author keilynmarcuswilliamson
  */
 public class Book {
 
     Card[] bookArray;
+    
+    /**
+     * Constructor for a book. An array that holds 4 elements(cards)
+     */
 
     public Book() {
         bookArray = new Card[4];
 
     }
 
+    /**
+     * Gets a card a a specific position
+     * @param i index position where to get card
+     * @return returns card at the specified return position
+     */
     public Card getCard(int i) {
 
         return bookArray[i];
     }
 
+    /**
+     * Gets the suit of a card at a specific index position
+     * @param i index position of card
+     * @return card at specified index position
+     */
     public String getSuit(int i) {
         Card card = bookArray[i];
 
         return card.getSuit();
     }
 
+    /**
+     * Gets the value of the card at a specific index position.
+     * @param i i index position of card
+     * @return card at specified index position
+     */
     public int getValue(int i) {
         Card card = bookArray[i];
 
         return card.getFaceValue();
     }
 
+    /**
+     * Gets the Face name of a card at a specific index position.
+     * @param  i i index position of card
+     * @return card at specified index position
+     */
     public String getFaceName(int i) {
         Card card = bookArray[i];
 
         return card.getFaceName();
     }
 
+    /**
+     * Adds a card to the book (array).
+     * @param i index of where to add card in the book array
+     * @param card card to add to the book
+     */
     public void addCard(int i, Card card) {
 
         bookArray[i] = card;
 
     }
 
+    /**
+     * 
+     * @return returns the amount of elements in book
+     */
     public int length() {
         return bookArray.length;
     }
@@ -54,6 +88,12 @@ public class Book {
     // return 0 if there are not spades,
     // return the posisiton at which 
     // the spade is at if there are spades
+    
+    /**
+     * Gets highest spade in book. return 0 if there are no spades
+     * @return the index position of the highest spade in the book
+     * 
+     */
     public int checkHighestSpade() {
         Card tempCard = bookArray[0];
         int iterationNum = -1;
@@ -89,6 +129,11 @@ public class Book {
 
     //checks highest card of suit that the first person threw down
     //determines who wins book, and who starts next
+    
+    /**
+     * determines who wins book, and who starts next
+     * @return the highest card in the book based on the rules of spades
+     */
     public int checkHighestCard() {
         Card tempCard;
         tempCard = bookArray[0];
@@ -112,6 +157,10 @@ public class Book {
 
     }
 
+    /**
+     * prints out the book array
+     * @return 
+     */
     @Override
     public String toString() {
         return "{" + bookArray + '}';

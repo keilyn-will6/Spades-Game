@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ *Creates a hand either for a player or a computer
  * @author keilynmarcuswilliamson
+ * 
  */
 public class Hand {
 
@@ -21,97 +18,68 @@ public class Hand {
     private int team;
     private String name;
 
+    /**
+     * constructor for creating a hand of cards
+     */
     public Hand() {
         hand = new ArrayList();
     }
 
+    /**
+     * Clears the hand of all elements
+     */
     public void clear() {
         hand.clear();
     }
 
+    /**
+     * 
+     * @return the number of cards in the hand
+     */
     public int numOfCards() {
         return hand.size();
     }
 
+    /**
+     * Adds a card to the hand
+     * @param card card to add to the hand
+     */
     public void addcard(Card card) {
         hand.add(card);
     }
 
+    /**
+     * removes a card form the hand
+     * @param i the index position of the card to remove
+     */
     public void removeCard(int i) {
         hand.remove(i);
     }
 
+    /**
+     * removes a card form the hand and returns the card
+     * @param i the index position of the card to remove
+     * @return the index position of the card to remove
+     */
     //incase you want to return that card
     public Card removeCard2(int i) {
         return hand.remove(i);
     }
 
+    /**
+     * Gets a card in a hand
+     * @param i index position of the card to get
+     * @return return the index position of the card to get
+     */
     public Card getCard(int i) {
         return hand.get(i);
     }
+    
 
-    public void organize() {
-        int count = 0;
-        boolean org = true;
-        int diamondCount = 0;
-
-        for (int i = 0; i < 13; i++) {
-            if ("Diamonds".equals(hand.get(i).getSuit())) {
-
-                for (int j = count; j < 13; j++) {
-                    if ("Diamonds".equals(hand.get(j).getSuit())) {
-                        Card temp1 = hand.get(i);
-                        Card temp2 = hand.get(j);
-
-                        if (temp1 != temp2) {
-                            hand.remove(temp1);
-                            hand.remove(temp2);
-                            hand.add(i, temp2);
-                            hand.add(j, temp1);
-                            count++;
-                            diamondCount++;
-
-                            break;
-                        }
-
-                    }
-                    count++;
-
-                }
-
-                while (org) {
-                    for (int j = 0; j < diamondCount; j++) {
-                        int index = j;
-                        Card smallest = hand.get(j);
-                        for (int k = j + 1; k < diamondCount; k++) {
-                            //Card smallest = hand.get(j);
-
-                            Card temp1 = hand.get(k);
-                            Card temp2;
-
-                            if (smallest.getFaceValue() > temp1.getFaceValue()) {
-                                smallest = temp1;
-                                index = k;
-                                //temp2 = temp1;
-                            }
-                        }
-
-                        Card temp = hand.remove(index);
-                        Card temp2 = hand.remove(j);
-
-                        hand.remove(index);
-                        hand.remove(j);
-                        hand.add(index, temp2);
-                        hand.add(j, temp);
-
-                    }
-
-                }
-
-            }
-        }
-    }
-
+    
+/**
+ * displays hand in order of diamonds, clubs, hearts, and spades
+ */
     public void displayHand() {
         int k = 1;
 
@@ -124,19 +92,18 @@ public class Hand {
                         Card card2 = hand.get(j);
 
                         if (card2.getFaceValue() < card1.getFaceValue()) {
-
                             hand.remove(card2);
                             hand.add(j, card1);
                             hand.remove(card1);
                             hand.add(i, card2);
                             card1 = card2;
-
                         }
+
                     }
 
                 }
                 hand2.add(k - 1, card1);
-                System.out.println(k + " " + card1);
+                //System.out.println(k + " " + card1);
                 k++;
                 //Card tempCar1 = hand.remove(place);
                 //Card tempCar2; 
@@ -162,7 +129,7 @@ public class Hand {
                 }
                 hand2.add(k - 1, card1);
 
-                System.out.println(k + ". " + card1);
+                //System.out.println(k + ". " + card1);
                 k++;
             }
         }
@@ -184,7 +151,7 @@ public class Hand {
                 }
                 hand2.add(k - 1, card1);
 
-                System.out.println(k + ". " + card1);
+                //System.out.println(k + ". " + card1);
                 k++;
             }
         }
@@ -205,13 +172,19 @@ public class Hand {
                     }
                 }
                 hand2.add(k - 1, card1);
-                System.out.println(k + ". " + card1);
+                //System.out.println(k + ". " + card1);
                 k++;
             }
         }
 
         hand.clear();
-        hand = hand2;
+        
+        for (int i = 0; i < hand2.size(); i++) {
+            hand.add(i,hand2.get(i)); 
+        }
+        
+        hand2.clear();
+        
         /*
         for (int i = 0; i < hand2.size(); i++) {
             System.out.println(hand2.get(i));
@@ -222,36 +195,69 @@ public class Hand {
 
     } //end of displayHand()
 
+    /**
+     * Displays the elements (cards) in a hand 
+     */
     public void displayHand2() {
         for (int i = 0; i < hand.size(); i++) {
-            System.out.println(i + 1 + " " + hand.get(i));
+            System.out.println(i + 1 + ". " + hand.get(i));
         }
 
         System.out.println("");
     }
 
+    /**
+     * sets the seat if a player
+     * @param i is the integer value to set the seat to
+     */
     public void setSeat(int i) {
         seat = i;
     }
 
+    /**
+     * 
+     * @return the seat 
+     */
     public int getSeat() {
         return seat;
     }
 
+    /**
+     * sets the teams and seat 
+     * @param i the team to set to
+     * @param j the seat to set to
+     */
     public void setTeamAndSeat(int i, int j) {
         team = i;
         seat = j;
     }
 
+    /**
+     * get the team
+     * @return the team 
+     */
     public int getTeam() {
         return team;
     }
 
+    /**
+     * 
+     * @return the name of the player
+     */
     public String getName() {
 
         return name;
     }
 
+    /**
+     * This methods allows the player (computer) to choose what card to play
+     * @param hand are the cards associated with the computer object
+     * @param turn the turn that they are putting down a card. This drastically
+     * effects the choice of what card to put down.
+     * @param book the cards already at play if turn != 0 (going first)
+     * @return the index value that of the card that the computer has chosen to 
+     * put down.
+     */
     public int play(Hand hand, int turn, Book book) {
 
         //going first 
@@ -340,7 +346,7 @@ public class Hand {
                     for (int j = i + 1; j < hand.numOfCards(); j++) {
                         if ((hand.getCard(j).getSuit().equals(book.getCard(0).getSuit()))
                                 && (hand.getCard(j).getFaceValue() > book.getCard(0).getFaceValue())) {
-                            
+
                             Card card2 = hand.getCard(j);
                             if (card2.getFaceValue() > card1.getFaceValue()) {
                                 card1 = card2;
@@ -382,8 +388,6 @@ public class Hand {
         // if they don't have suit throw out highest spade D
         // if they have a card higher than player one's' card in suit throw it out D
         // if not throw out lowest card in suit D
-        
-        
         // going third
         // look at suit established by first player
         // check to see if they have a card in that suit
@@ -454,6 +458,10 @@ public class Hand {
         return 0;
     }
 
+    /**
+     * 
+     * @return returns the name of the player
+     */
     @Override
     public String toString() {
         return "{" + name + '}';

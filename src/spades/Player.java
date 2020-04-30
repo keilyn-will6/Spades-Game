@@ -6,8 +6,8 @@
 package spades;
 
 /**
- *
- * @author carlosespejo
+ *Creates a user player object 
+ * @author keilynmarcuswilliamson
  */
 public class Player extends Hand{
 
@@ -17,6 +17,11 @@ public class Player extends Hand{
     private int booksWon;
     private Hand hand = new Hand();
 
+    
+    /**
+     * Constructor for a player object
+     * @param name of the player object
+     */
     public Player(String name) {
         this.name = name;
         //this.team = team;
@@ -24,12 +29,21 @@ public class Player extends Hand{
         
     }
 
+    /**
+     * 
+     * @param playCard index value of card to play in hand.
+     * @return returns the card at the specified index value; 
+     */
     public Card play(int playCard) {
 
         return hand.removeCard2(playCard);
 
     }
     
+    /**
+     * 
+     * @return the name of the user  player
+     */
     @Override
     public String getName(){
         return name;
