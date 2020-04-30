@@ -1,4 +1,4 @@
-This Project is supposed to run the game spades in a GUI. However it enters into an infinite loop, and displays the cards all wrong. It does not work at all. This project needs to undergo a full makeover and change. The goal is to make a full functioning spades game with another option of playing the simple card Game "I Declare war" in a GUI. 
+This Project is supposed to run the game spades in a GUI. However it enters into an infinite loop, and displays the cards all wrong. It does not work at all. This project needs to undergo a full makeover and change. The goal is to make a full functioning spades game that is playable on the console. 
 
 Feature 1: Understanding the game
   User Story A: As a spades player, I want to know the rules if I don't know how to play.
