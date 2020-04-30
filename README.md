@@ -1,2 +1,2 @@
 # Spades-Game
-Implementation of a game of Spades in Java using JavaFx.
+My own implementation of the game of Spades using the console
