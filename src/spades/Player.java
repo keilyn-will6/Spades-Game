@@ -6,17 +6,49 @@
 package spades;
 
 /**
- *
- * @author carlosespejo
+ *Creates a user player object 
+ * @author keilynmarcuswilliamson
  */
-public class Player {
-    private String Name;
-    boolean isHuman = false;
+public class Player extends Hand{
 
-public Player(String name){
-    this.Name = name;
-}
-
+    private String name;
+    //private int team;
+    //private int seatNum;
+    private int booksWon;
+    private Hand hand = new Hand();
 
     
+    /**
+     * Constructor for a player object
+     * @param name of the player object
+     */
+    public Player(String name) {
+        this.name = name;
+        //this.team = team;
+        //this.seatNum = seatNum;
+        
+    }
+
+    /**
+     * 
+     * @param playCard index value of card to play in hand.
+     * @return returns the card at the specified index value; 
+     */
+    public Card play(int playCard) {
+
+        return hand.removeCard2(playCard);
+
+    }
+    
+    /**
+     * 
+     * @return the name of the user  player
+     */
+    @Override
+    public String getName(){
+        return name;
+    }
+    
+    
+
 }
