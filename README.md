@@ -1,4 +1,4 @@
 # Spades-Game
-My own implementation of the game of Spades using the console
+My own implementation of the game of Spades using the console in java
 
-clone from Game_finish_kw branch to run project.
+Before running this project switch branch to Game_finish_kw.
